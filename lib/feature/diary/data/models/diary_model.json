@@ -1,0 +1,44 @@
+{
+    "model_name": "diary_model",
+    "additionals": [
+        "copyWith",
+        "json",
+        "equatable",
+        "toString"
+    ],
+    "style": "basic",
+    "properties": [
+        {
+            "name": "comments",
+            "type": "String"
+        },
+        {
+            "name": "diaryDate",
+            "type": "String"
+        },
+        {
+            "name": "areaId",
+            "type": "int"
+        },
+        {
+            "name": "taskCategoryId",
+            "type": "int"
+        },
+        {
+            "name": "images",
+            "type": "List<String>"
+        },
+        {
+            "name": "isIncludeInPhotoGallery",
+            "type": "bool"
+        },
+        {
+            "name": "tags",
+            "type": "List<String?>"
+        },
+        {
+            "name": "eventId",
+            "type": "int?"
+        }
+    ]
+}
