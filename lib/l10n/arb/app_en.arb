@@ -1,0 +1,7 @@
+{
+    "@@locale": "en",
+    "newDiaryTitle": "New Diary",
+    "@newDiaryTitle": {
+        "description": "Text shown in the AppBar of the Add New Diary Page"
+    }
+}
