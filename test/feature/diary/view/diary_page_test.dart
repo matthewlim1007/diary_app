@@ -14,10 +14,13 @@ void main() {
     });
 
     testWidgets('renders DiaryView', (tester) async {
-      await tester.pumpWidget(MaterialApp(
+      await tester.pumpWidget(
+        MaterialApp(
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          home: DiaryPage()));
+          home: DiaryPage(),
+        ),
+      );
       expect(find.byType(DiaryBody), findsOneWidget);
     });
   });

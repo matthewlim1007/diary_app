@@ -16,7 +16,7 @@ void main() {
       diaryBloc = DiaryBloc(createDiaryUseCase: di.serviceLocator());
     });
 
-    testWidgets('renders Text', (tester) async {
+    testWidgets('renders Scaffold', (tester) async {
       await tester.pumpWidget(
         BlocProvider(
           create: (context) => diaryBloc,
@@ -30,7 +30,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(Text), findsOneWidget);
+      expect(find.byType(Scaffold), findsOneWidget);
     });
   });
 }

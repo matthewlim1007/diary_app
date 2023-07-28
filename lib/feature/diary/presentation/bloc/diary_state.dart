@@ -38,3 +38,6 @@ class DiaryLoading extends DiaryState {}
 
 /// A state wherein the diary entry has been successfully created
 class DiaryEntryCreated extends DiaryState {}
+
+/// A state wherein the creation of the diary entry received an error
+class DiaryCreationFailed extends DiaryState {}
