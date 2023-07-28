@@ -4,8 +4,7 @@ import 'dart:io';
 import 'package:diary_app/core/error/failures.dart';
 import 'package:diary_app/core/utils/http_client.dart';
 import 'package:diary_app/feature/diary/data/models/models.dart';
-
-import 'package:http/http.dart' as http;
+import 'package:diary_app/injection_container.dart';
 
 /// An abstract class for the diary remote datasource
 // ignore: one_member_abstracts
@@ -21,7 +20,7 @@ abstract class DiaryRemoteDatasource {
 
 /// The remote data source implementation for the diary feature
 class DiaryRemoteDatasourceImpl extends DiaryRemoteDatasource {
-  final _httpClient = MHttpClient(http.Client());
+  final _httpClient = serviceLocator<MHttpClient>();
 
   @override
   Future<void> createDiaryEntry(DiaryModel diaryModel) async {

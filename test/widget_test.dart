@@ -6,11 +6,18 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:diary_app/app/app.dart';
+import 'package:diary_app/feature/diary/presentation/view/diary_page.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:diary_app/injection_container.dart' as di;
+import 'helpers/helpers.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  setUp(() async {
+    await di.init();
+  });
+
+  testWidgets('Diary page is shown', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const App());
+    await tester.pumpApp(const DiaryPage());
   });
 }

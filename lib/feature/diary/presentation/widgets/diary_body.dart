@@ -72,6 +72,14 @@ class _DiaryBodyState extends State<DiaryBody> {
     _tagsTextEditingController = TextEditingController();
   }
 
+  @override
+  void dispose() {
+    _commentTextEditingController.dispose();
+    _diaryDateTextEditingController.dispose();
+    _tagsTextEditingController.dispose();
+    super.dispose();
+  }
+
   /// Opens a dialog where you can select a date
   Future<void> _selectDate(BuildContext context) async {
     final today = DateTime.now();
