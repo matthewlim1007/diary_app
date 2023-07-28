@@ -7,6 +7,7 @@
 
 import 'package:diary_app/app/app.dart';
 import 'package:diary_app/feature/diary/presentation/view/diary_page.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:diary_app/injection_container.dart' as di;
 import 'helpers/helpers.dart';
@@ -19,5 +20,17 @@ void main() {
   testWidgets('Diary page is shown', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpApp(const DiaryPage());
+
+    await tester.enterText(
+      find.byKey(const Key('commentTextFieldKey')),
+      'adding comments',
+    );
+    expect(find.text('adding comments'), findsOneWidget);
+
+    await tester.enterText(
+      find.byKey(const Key('tagTextFieldKey')),
+      'Tag1, Tag2',
+    );
+    expect(find.text('Tag1, Tag2'), findsOneWidget);
   });
 }

@@ -20,7 +20,12 @@ abstract class DiaryRemoteDatasource {
 
 /// The remote data source implementation for the diary feature
 class DiaryRemoteDatasourceImpl extends DiaryRemoteDatasource {
-  final _httpClient = serviceLocator<MHttpClient>();
+  ///
+  DiaryRemoteDatasourceImpl({
+    required MHttpClient mHttpClient,
+  }) : _httpClient = mHttpClient;
+
+  final MHttpClient _httpClient;
 
   @override
   Future<void> createDiaryEntry(DiaryModel diaryModel) async {
