@@ -10,7 +10,7 @@ Future<void> initDiaryFeature(GetIt serviceLocator) async {
   serviceLocator
     // DataSources
     ..registerLazySingleton<DiaryRemoteDatasource>(
-      () => DiaryRemoteDatasourceImpl(mHttpClient: serviceLocator()),
+      () => DiaryRemoteDatasourceImpl2(httpClient: serviceLocator()),
     )
 
     // Repositories

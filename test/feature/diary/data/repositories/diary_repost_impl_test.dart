@@ -1,3 +1,4 @@
+import 'package:diary_app/core/error/failures.dart';
 import 'package:diary_app/feature/diary/data/datasources/diary_remote_source.dart';
 import 'package:diary_app/feature/diary/data/models/diary_model.dart';
 import 'package:diary_app/feature/diary/data/repositories/diary_repository_impl.dart';
@@ -34,7 +35,7 @@ void main() {
   );
 
   test(
-    'should return Failure if exception is thrown',
+    'should return null when creation is successful',
     () async {
       when(() => mockDiaryRemoteDataSource.createDiaryEntry(any()))
           .thenAnswer((_) async => null);
@@ -43,6 +44,18 @@ void main() {
         result,
         const Right(null),
       );
+
+      verify(() => mockDiaryRemoteDataSource.createDiaryEntry(any())).called(1);
+    },
+  );
+
+  test(
+    'should return Failure if exception is thrown',
+    () async {
+      when(() => mockDiaryRemoteDataSource.createDiaryEntry(any()))
+          .thenThrow(DiaryPostFailure());
+
+      final result = await diaryRepository.createDiaryEntry(modelSut);
 
       verify(() => mockDiaryRemoteDataSource.createDiaryEntry(any())).called(1);
     },

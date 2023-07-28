@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:bloc_test/bloc_test.dart';
+import 'package:diary_app/core/error/misc/misc.dart';
 import 'package:diary_app/feature/diary/data/datasources/diary_remote_source.dart';
 import 'package:diary_app/feature/diary/data/repositories/diary_repository_impl.dart';
 import 'package:diary_app/feature/diary/domain/entities/entities.dart';
@@ -9,6 +10,7 @@ import 'package:diary_app/feature/diary/domain/usecases/create_diary_use_case.da
 import 'package:diary_app/feature/diary/presentation/bloc/bloc.dart';
 import 'package:diary_app/injection_container.dart' as di;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:http/testing.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -56,10 +58,25 @@ void main() {
     );
 
     blocTest<DiaryBloc, DiaryState>(
-      'CreateDiaryEntryEvent emits loading state',
+      'CreateDiaryEntryEvent emits successful state',
+      setUp: () => when(
+        () => mockCreateDiaryUseCase
+            .call(CreateDiaryParam(diaryEntity: entitysut)),
+      ).thenAnswer((_) async => Right(null)),
       build: () => diaryBloc,
       act: (bloc) => bloc.add(CreateDiaryEntryEvent(diaryEntity: entitysut)),
-      expect: () => <DiaryState>[DiaryLoading()],
+      expect: () => <DiaryState>[DiaryLoading(), DiaryEntryCreated()],
+    );
+
+    blocTest<DiaryBloc, DiaryState>(
+      'CreateDiaryEntryEvent emits failed state',
+      setUp: () => when(
+        () => mockCreateDiaryUseCase
+            .call(CreateDiaryParam(diaryEntity: entitysut)),
+      ).thenAnswer((_) async => Left(UnknownFailure())),
+      build: () => diaryBloc,
+      act: (bloc) => bloc.add(CreateDiaryEntryEvent(diaryEntity: entitysut)),
+      expect: () => <DiaryState>[DiaryLoading(), DiaryCreationFailed()],
     );
   });
 }

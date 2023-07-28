@@ -2,9 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:diary_app/core/error/failures.dart';
-import 'package:diary_app/core/utils/http_client.dart';
 import 'package:diary_app/feature/diary/data/models/models.dart';
-import 'package:diary_app/injection_container.dart';
+import 'package:http/http.dart' as http;
 
 /// An abstract class for the diary remote datasource
 // ignore: one_member_abstracts
@@ -19,13 +18,15 @@ abstract class DiaryRemoteDatasource {
 }
 
 /// The remote data source implementation for the diary feature
-class DiaryRemoteDatasourceImpl extends DiaryRemoteDatasource {
+class DiaryRemoteDatasourceImpl2 extends DiaryRemoteDatasource {
   ///
-  DiaryRemoteDatasourceImpl({
-    required MHttpClient mHttpClient,
-  }) : _httpClient = mHttpClient;
+  DiaryRemoteDatasourceImpl2({
+    required http.Client httpClient,
+  }) : _httpClient = httpClient;
 
-  final MHttpClient _httpClient;
+  final http.Client _httpClient;
+
+  static const baseUrl = 'https://reqres.in/api';
 
   @override
   Future<void> createDiaryEntry(DiaryModel diaryModel) async {
@@ -33,8 +34,9 @@ class DiaryRemoteDatasourceImpl extends DiaryRemoteDatasource {
       final body = jsonEncode(diaryModel.toJson());
 
       final response = await _httpClient.post(
+        Uri.parse('$baseUrl/diary'),
+        headers: {'Content-Type': 'application/json'},
         body: body,
-        path: '/diary',
       );
 
       if (response.statusCode == 201) {
@@ -46,6 +48,8 @@ class DiaryRemoteDatasourceImpl extends DiaryRemoteDatasource {
       }
     } on SocketException {
       throw NetworkFailure();
+    } on Failure {
+      rethrow;
     } on Exception {
       throw UnknownFailure();
     }

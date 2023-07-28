@@ -102,6 +102,7 @@ class _DiaryBodyState extends State<DiaryBody> {
               SizedBox(
                 height: 400,
                 child: CupertinoDatePicker(
+                  key: const Key('datePickerKey'),
                   mode: CupertinoDatePickerMode.date,
                   initialDateTime: selectedDate,
                   minimumDate: minDate,
@@ -432,6 +433,7 @@ class _DiaryBodyState extends State<DiaryBody> {
                                   height: 25,
                                 ),
                                 TextFormField(
+                                  key: const Key('diaryTextFieldKey'),
                                   controller: _diaryDateTextEditingController,
                                   readOnly: true,
                                   onTap: () => _selectDate(context),
