@@ -404,6 +404,7 @@ class _DiaryBodyState extends State<DiaryBody> {
                                   height: 25,
                                 ),
                                 TextFormField(
+                                  key: const Key('commentTextFieldKey'),
                                   controller: _commentTextEditingController,
                                   decoration: InputDecoration(
                                     hintText: l10n.commentTitle,
@@ -508,6 +509,7 @@ class _DiaryBodyState extends State<DiaryBody> {
                                   height: 20,
                                 ),
                                 TextFormField(
+                                  key: const Key('tagTextFieldKey'),
                                   controller: _tagsTextEditingController,
                                   decoration:
                                       InputDecoration(hintText: l10n.tagHint),
