@@ -30,14 +30,16 @@ class DiaryRemoteDatasourceImpl extends DiaryRemoteDatasource {
 
       final response = await _httpClient.post(
         body: body,
-        path: '',
+        path: '/diary',
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         return;
+      } else {
+        throw DiaryPostFailure(
+          message: response.reasonPhrase ?? 'Creation has failed,',
+        );
       }
-
-      throw DiaryPostFailure();
     } on SocketException {
       throw NetworkFailure();
     } on Exception {

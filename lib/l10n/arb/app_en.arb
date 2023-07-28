@@ -3,5 +3,27 @@
     "newDiaryTitle": "New Diary",
     "@newDiaryTitle": {
         "description": "Text shown in the AppBar of the Add New Diary Page"
-    }
+    },
+    "okTitle": "Ok",
+    "errorTitle": "Error.",
+    "errorMessage": "Oops, something went wrong. Please try again later.",
+    "successTitle": "Success.",
+    "sucessMessage": "Your entry has been created.",
+    "address": "20041075 | Tap-NS-TAP-North Stratfield",
+    "addDiaryTitle": "Add to site diary",
+    "addPhotosTitle": "Add Photos to site diary",
+    "addButtonTitle": "Add a photo",
+    "includeInPhotoGalleryText": "Include in photo gallery",
+    "commentTitle": "Comments",
+    "detailsTitle": "Details",
+    "selectAreaHint": "Select Area",
+    "areaRequiredText": "Area is required",
+    "taskCategoryTitle": "Task Category",
+    "taskCategoryRequiredText": "Task Category is required",
+    "tagHint": "Tags",
+    "tagRequireText": "Tags are required",
+    "selectEventHint": "Select an event",
+    "linkToEventTitle": "Link to existing event?",
+    "eventRequiredText": "Event is required",
+    "nextButtonTitle": "Next"
 }

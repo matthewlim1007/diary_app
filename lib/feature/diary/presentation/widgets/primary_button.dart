@@ -32,7 +32,7 @@ class PrimaryButton extends StatelessWidget {
               Theme.of(context).colorScheme.secondary,
             ),
           ),
-          onPressed: () => onPressed,
+          onPressed: onPressed,
           child: Text(
             buttonText,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(

@@ -23,10 +23,17 @@ class DiaryBloc extends Bloc<DiaryEvent, DiaryState> {
   FutureOr<void> _onCustomDiaryEvent(
     CustomDiaryEvent event,
     Emitter<DiaryState> emit,
-  ) {
+  ) async {
     if (event is CreateDiaryEntryEvent) {
-      _createDiaryUseCase
+      emit(DiaryLoading());
+      final result = await _createDiaryUseCase
           .call(CreateDiaryParam(diaryEntity: event.diaryEntity));
+
+      result.fold((left) {
+        emit(DiaryCreationFailed());
+      }, (right) {
+        emit(DiaryEntryCreated());
+      });
     }
   }
 }
